@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ employee }} - Transaction History</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body class="p-4 bg-light">
+    <div class="container">
+        <h2 class="mb-4">{{ employee }} - Transaction History</h2>
+        <a href="/" class="btn btn-secondary mb-3">⬅ Back</a>
+
+        {% if rows %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped shadow-sm bg-white">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for type, amount, comment, created_at in rows %}
+                    <tr>
+                        <td>{{ created_at }}</td>
+                        <td>{{ type }}</td>
+                        <td>{% if type == "advance" %}
+                                <span class="text-danger">-{{ amount }}</span>
+                            {% else %}
+                                <span class="text-success">+{{ amount }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ comment if comment else "-" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">No transactions found for {{ employee }}.</div>
+        {% endif %}
+    </div>
+</body>
+</html>
