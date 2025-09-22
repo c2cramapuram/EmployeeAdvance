@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 
-app = Flask(__name__)
+#app = Flask(__name__)
+app = Flask(__name__, template_folder="Templates")
 app.secret_key = "supersecretkey"
 
 # ---------- DATABASE INIT ----------
@@ -37,7 +38,6 @@ def clear_transactions():
     conn.commit()
     conn.close()
     print("✅ All transactions have been deleted.")
-git --version
 # ---------- ROUTES ----------
 
 @app.route("/employees", methods=["GET", "POST"])
