@@ -21,17 +21,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for type, amount, comment, created_at in rows %}
+                    {% for row in rows %}
                     <tr>
-                        <td>{{ created_at }}</td>
-                        <td>{{ type }}</td>
-                        <td>{% if type == "advance" %}
-                                <span class="text-danger">-{{ amount }}</span>
+                        <td>{{ row['created_at'] }}</td>
+                        <td>{{ row['type'] }}</td>
+                        <td>
+                            {% if row['type'] == "advance" %}
+                                <span class="text-danger">-{{ row['amount'] }}</span>
                             {% else %}
-                                <span class="text-success">+{{ amount }}</span>
+                                <span class="text-success">+{{ row['amount'] }}</span>
                             {% endif %}
                         </td>
-                        <td>{{ comment if comment else "-" }}</td>
+                        <td>{{ row['comment'] if row['comment'] else "-" }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
