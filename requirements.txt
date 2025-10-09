@@ -3,3 +3,4 @@ Flask-Login==0.6.3
 Flask-Bcrypt==1.0.1
 pytz==2024.1
 gunicorn==21.2.0
+supabase
